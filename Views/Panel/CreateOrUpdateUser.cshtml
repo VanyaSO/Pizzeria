@@ -1,0 +1,78 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Pizzeria.ViewModels
+
+@model CreateOrUpdateUserViewModel
+@{
+    Layout = "_PanelLayout.cshtml";
+    bool isChange = !string.IsNullOrEmpty(Model.Id);
+    ViewData["Title"] = $"{(isChange ? "Изменить" : "Добавить")} пользователя";
+}
+
+
+<div class="breadcrumb-main">
+    <div class="breadcrumb-container clearfix">
+        <h1 class="page-title">@(isChange ? "Изнемение" : "Добавление") пользователя</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a asp-action="Index" asp-controller="Panel">Главная</a>
+            </li>
+            <li>
+                <a asp-action="Users" asp-controller="Panel">Пользователи</a>
+            </li>
+            <li>
+                <a asp-action="CreateOrUpdateUser" asp-controller="Panel">@(isChange ? "Изменить" : "Добавить") пользователя</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<h1 class="mb-3 text-center">@(isChange ? "Изменить" : "Добавить") пользователя</h1>
+<form method="post" asp-controller="Panel" asp-action="CreateOrUpdateUser">
+    <div class="form-group d-none">
+        <input asp-for="Id" class="form-control" hidden/>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year" class="control-label"></label>
+        <input asp-for="Year" class="form-control"/>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control"/>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group @(!isChange ? "" : "d-none")">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" value="@(!isChange ? null : "000000")"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    
+
+    <div class="form-group @(isChange ? "" : "d-none")">
+        <label asp-for="NewPassword" class="control-label"></label>
+        <input asp-for="NewPassword" class="form-control" value="@(isChange ? null : "000000")"/>
+        <span asp-validation-for="NewPassword" class="text-danger"></span>
+    </div>
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div class="mt-3"></div>
+    <div class="form-group">
+        @Html.AntiForgeryToken()
+        <input type="submit" value="@(isChange ? "Изменить" : "Добавить")" class="btn btn-primary"/>
+    </div>
+</form>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

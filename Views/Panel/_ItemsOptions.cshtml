@@ -1,0 +1,27 @@
+<form action="@ViewBag.RoutCurrentAction" class="form-table-settings mb-3 p-0">
+    <div class="form-table-settings__option">
+        <label>Сортировать по</label>
+        <div class="d-flex">
+            <select name="options.DescendingOrder" class="form-control">
+                <option value="false" selected="@(!Model.Options.DescendingOrder)">A-Z / 0-9</option>
+                <option value="true" selected="@(Model.Options.DescendingOrder)">Z-A / 9-0</option>
+            </select>
+            <select name="options.OrderPropertyName" asp-items="ViewBag.SortOptions" class="form-control">
+                <option value="">По умолчанию</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-table-settings__option">
+        <label>Искать по</label>
+        <select name="options.SearchPropertyName" asp-items="ViewBag.SearchOptions" class="form-control">
+            <option value="">Все</option>
+        </select>
+    </div>
+    <div class="form-table-settings__input">
+        <label>Значение для поиска</label>
+        <input type="text" name="options.SearchTerm" placeholder="Напишите, что искать.." class="form-control ui-autocomplete-input" value="@Model.Options.SearchTerm"/>
+    </div>
+    <button type="submit" class="btn btn-primary form-table-settings__btn">
+        <i class="fa fa-search"></i>
+    </button>
+</form>

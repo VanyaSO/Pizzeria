@@ -1,0 +1,97 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Pizzeria.Models.Pages
+@model PagedList<User>
+
+@{
+    Layout = "_PanelLayout.cshtml";
+    ViewData["Title"] = "Пользователи";
+}
+
+
+<div class="breadcrumb-main">
+    <div class="breadcrumb-container clearfix">
+        <h1 class="page-title">Панель управления</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a asp-action="Index" asp-controller="Panel">Главная</a>
+            </li>
+            <li>
+                <a asp-action="Users" asp-controller="Panel">Пользователи</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="py-5">
+    <a asp-controller="Panel" asp-action="CreateOrUpdateUser" class="btn btn-primary w-100 mb-4">Добавить пользователя</a>
+
+    @await Html.PartialAsync("_ItemsOptions.cshtml", Model)
+
+    <div class="p-5 mb-4 bg-light rounded-3 ovx table-responsive">
+        <table class="table">
+            <tr>
+                <th>Email</th>
+                <th>Номер телефона</th>
+                <th>Год рождения</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr data-rowid="@user.Id">
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.Year</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-action="EditRoles" asp-controller="Panel" asp-route-userId="@user.Id">Роль</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-action="CreateOrUpdateUser" asp-controller="Panel" asp-route-userId="@user.Id">Изменить</a>
+                    </td>
+                    <td>
+                        <button onclick="deleteUser('@user.Id')" class="btn btn-sm btn-danger">Удалить</button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="text-center">
+            @await Html.PartialAsync("_Pages", Model)
+        </div>
+
+        @await Html.PartialAsync("_Modal", "Удалить выбранного пользователя?")
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    async function deleteUser(userId) {
+        const btnYes = document.getElementById('btn-Yes');
+        const btnNo = document.getElementById('btn-No');
+
+        $('#confirmModal').modal('show');
+
+
+        btnYes.onclick = () => {
+            const deleteItem = fetch(`/panel/delete-user/?userId=${userId}`, { method: 'DELETE' })
+                .then(response => {
+                    if (!response.ok) {
+                        response.json().then(data => {
+                            throw new Error(data.message);
+                        });
+                    }
+                    document.querySelector("tr[data-rowid='" + userId + "']").remove();
+                    $('#confirmModal').modal('hide');
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+        btnNo.onclick = () => {
+            $('#confirmModal').modal('hide');
+        }
+    }
+</script>
+}
