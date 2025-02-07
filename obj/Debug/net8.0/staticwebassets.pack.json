@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/scopedcss/projectbundle/Pizzeria.bundle.scp.css",
-      "PackagePath": "staticwebassets/Pizzeria.bundle.scp.css"
+      "PackagePath": "staticwebassets/Pizzeria.9wesbp0206.bundle.scp.css"
     },
     {
       "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/assets/css/bootstrap.min.css",
@@ -541,8 +541,8 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
-      "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/productFiles/beafad26-3a3a-427f-8668-2e8e58969c3epizza.png",
-      "PackagePath": "staticwebassets/productFiles/beafad26-3a3a-427f-8668-2e8e58969c3epizza.png"
+      "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/productFiles/drink.png",
+      "PackagePath": "staticwebassets/productFiles/drink.png"
     },
     {
       "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/productFiles/pizza.png",
@@ -551,6 +551,10 @@
     {
       "Id": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/productFiles/salad.png",
       "PackagePath": "staticwebassets/productFiles/salad.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Pizzeria.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Pizzeria.Microsoft.AspNetCore.StaticWebAssets.props",

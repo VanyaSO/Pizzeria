@@ -80,7 +80,7 @@ public class DishController : Controller
                     fileName = fileName.Substring(fileName.LastIndexOf('\\') + 1);
                 }
 
-                string filePath = "/productFiles/" + Guid.NewGuid().ToString() + fileName;
+                string filePath = "/productFiles/" + Guid.NewGuid() + fileName;
                 currentProduct.Image = filePath;
 
 

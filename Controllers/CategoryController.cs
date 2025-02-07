@@ -20,7 +20,7 @@ public class CategoryController : Controller
     
     [Route("/panel/categories")]
     [HttpGet]
-    public IActionResult Categories(QueryOptions options)
+    public IActionResult Index(QueryOptions options)
     {
         ViewBag.RoutAction = "/panel/categories";
         ViewBag.SortOptions = new SelectList(new List<SelectListItem>()
@@ -127,7 +127,7 @@ public class CategoryController : Controller
                 Image = imagePath
             });
 
-            return RedirectToAction("Categories");
+            return RedirectToAction("Index");
         }
         else
         {
@@ -155,7 +155,6 @@ public class CategoryController : Controller
                 }
  
                 imagePath = "/categoryFiles/" + Guid.NewGuid() + fileImageName;
- 
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + imagePath, FileMode.Create))
                 {
                     await model.File.CopyToAsync(fileStream);
@@ -171,7 +170,7 @@ public class CategoryController : Controller
             category.Image = imagePath;
             await _categories.UpdateCategoryAsync(category);
 
-            return RedirectToAction("Categories");
+            return RedirectToAction("Index");
         }
     }
 }

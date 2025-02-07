@@ -26,7 +26,9 @@
 <div class="py-5">
     <a asp-controller="Panel" asp-action="CreateOrUpdateUser" class="btn btn-primary w-100 mb-4">Добавить пользователя</a>
 
-    @await Html.PartialAsync("_ItemsOptions.cshtml", Model)
+    <div class="mb-3">
+        @await Html.PartialAsync("~/Views/Panel/_ItemsOptions.cshtml", Model)
+    </div>
 
     <div class="p-5 mb-4 bg-light rounded-3 ovx table-responsive">
         <table class="table">

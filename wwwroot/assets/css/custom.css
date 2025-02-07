@@ -5,7 +5,23 @@
 }
 
 .form-table-settings__option {
-    width: 50%;
+    width: 100%;
+}
+
+.form-table-settings__option:nth-of-type(1) select:nth-of-type(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0.5px !important;
+}
+
+.form-table-settings__option:nth-of-type(1) select:nth-of-type(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0.5px !important;
+}
+
+.form-table-settings__option:nth-of-type(2) {
+    border-radius: .25rem;
 }
 
 .form-table-settings__option:nth-of-type(3) {
@@ -63,4 +79,8 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
+}
+
+.category-info .form-table-settings__btn {
+    height: 35px;
 }

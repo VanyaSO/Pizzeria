@@ -273,3 +273,7 @@
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/bin/Debug/net8.0/Pizzeria.staticwebassets.endpoints.json
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/Pizzeria.sourcelink.json
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/staticwebassets/msbuild.Pizzeria.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

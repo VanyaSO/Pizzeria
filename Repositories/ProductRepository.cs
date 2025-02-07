@@ -45,7 +45,7 @@ public class ProductRepository : IProduct
     }
 
 
-    public async Task<Product> GetProductAsync(string id)
+    public async Task<Product?> GetProductAsync(string id)
     {
         return await _applicationContext.Products.AsNoTracking().FirstOrDefaultAsync(e => e.Id.ToString() == id);
     }
@@ -54,5 +54,14 @@ public class ProductRepository : IProduct
     {
         return await _applicationContext.Products.Include(e => e.Category).AsNoTracking()
             .FirstOrDefaultAsync(e => e.Id.ToString() == id);
+    }
+
+    public async Task<IEnumerable<Product>> GetSimilarProductsAsync(string categoryName)
+    {
+        return await _applicationContext.Products
+            .Where(p => p.Category.Name.Equals(categoryName))
+            .OrderBy(_ => Guid.NewGuid())
+            .Take(10)
+            .ToListAsync();
     }
 }
