@@ -13,7 +13,7 @@
                 <a asp-action="Index" asp-controller="Panel">Главная</a>
             </li>
             <li>
-                <a asp-action="Categories" asp-controller="Category">Категории</a>
+                <a asp-action="Index" asp-controller="Category">Категории</a>
             </li>
         </ul>
     </div>
@@ -22,7 +22,9 @@
 <div class="py-5">
     <a asp-controller="Category" asp-action="CreateOrUpdateCategory" class="btn btn-primary w-100 mb-4">Добавить категорию</a>
 
-    @await Html.PartialAsync("~/Views/Panel/_ItemsOptions.cshtml", Model)
+    <div class="mb-3">
+        @await Html.PartialAsync("~/Views/Panel/_ItemsOptions.cshtml", Model)
+    </div>
 
     <div class="p-5 mb-4 bg-light rounded-3 ovx table-responsive">
         <table class="table">

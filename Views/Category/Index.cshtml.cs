@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Pizzeria.Views.Panel;
+namespace Pizzeria.Views.Category;
 
-public class Categories : PageModel
+public class Index : PageModel
 {
     public void OnGet()
     {

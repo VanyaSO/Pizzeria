@@ -1,0 +1,108 @@
+@model Pizzeria.ViewModels.Home.ProductViewModel
+@{
+    ViewData["Title"] = $"{Model.Name}";
+}
+
+@if (Model.Category.Name == "")
+{
+    var text = 10;
+}
+<div class="container my-5">
+    <div class="breadcrumb-main">
+        <div class="breadcrumb-container clearfix">
+            <a href="@ViewBag.returnUrl" class="page-title">Назад</a>
+            <ul class="breadcrumb">
+                <li>
+                    <a asp-action="Index" asp-controller="Panel">Главная</a>
+                </li>
+                <li>
+                    <a asp-action="GetProduct" asp-controller="Home">Продукты</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pro-deatil product-content">
+        <div class="row">
+            <div class="col-sm-6 product-left">
+                <div class="thumbnails">
+                    <div class="pro-image" id="img-1">
+                        <img src="@Model.Image" title="@Model.Name" id="prozoom" alt="Buttercrust">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 product-right">
+                <h1>@Model.Name</h1>
+                @* <div class="rating"> *@
+                @*     <div class="product-rating"> *@
+                @*         <span class="fa fa-stack"><i class="fa-regular fa-star"></i></span> *@
+                @*         <span class="fa fa-stack"><i class="fa-regular fa-star"></i></span> *@
+                @*         <span class="fa fa-stack"><i class="fa-regular fa-star"></i></span> *@
+                @*         <span class="fa fa-stack"><i class="fa-regular fa-star"></i></span> *@
+                @*         <span class="fa fa-stack"><i class="fa-regular fa-star"></i></span> *@
+                @*     </div> *@
+                @*     <a href="product.html#" class="review">0 *@
+                @*         reviews</a> *@
+                @*     <a href="product.html" class="write-review" *@
+                @*        onclick="$('a[href=\'#special\']').tab('show'); $('body,html').animate({scrollTop: $('#myTabContent').offset().top-350}, 500); return false;"><i *@
+                @*             class="fa fa-pencil"></i>Write a review</a> *@
+                @* </div> *@
+                <hr>
+                <ul class="list-unstyled manufacturer-listpro">
+                    <li>
+                        <span class="disc">Бренд:</span>
+                        <span class="disc1">@Model.Brand</span>
+                    </li>
+                    <li>
+                        <span class="disc">Вес:</span>
+                        <span class="disc1">@Model.Weight грам </span>
+                    </li>
+                    <li>
+                        <span class="disc">Калорийность:</span>
+                        <span class="disc1">@Model.Calories</span>
+                    </li>
+                    <li>
+                        <span class="disc">Описание:</span>
+                        <span class="disc1">@Model.Description</span>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="list-unstyled">
+                    <li>
+                        <h2 class="pro_price">₴@Model.Price</h2>
+                    </li>
+                    <hr>
+                </ul>
+                <div id="product" class="product-option">
+                    <div class="form-group">
+                        <div class="quantity-addcart">
+                            <div class="proquantity-detail">
+                                <label class="control-label quantity-label"
+                                       for="input-quantity">Количетсво</label>
+                                <div class="product-btn-quantity">
+                                    <button class="minus"><i class="fa fa-minus"></i></button>
+                                    <input type="text" name="quantity" value="1" size="2"
+                                           id="input-quantity" class="form-control">
+                                    <button class="plus"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="productId" value="@Model.Id">
+                            <div class="pro-cart">
+                                <button type="button" id="button-cart" data-loading-text="Loading..."
+                                        class="btn btn-primary btn-lg btn-block">
+                                    <i class="icon-bag"></i>
+                                    <a href="shopping-cart.html">
+                                        <span>Добавить в корзину</span>
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    
+    <vc:similar-products category-name="@Model.Category.Name"></vc:similar-products>
+</div>
+
