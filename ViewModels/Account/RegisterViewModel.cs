@@ -33,4 +33,7 @@ public class RegisterViewModel
     [DataType(DataType.Password)]
     [Display(Name = "Подтвердить пароль")]
     public string? PasswordConfirm { get; set; }
+    
+    [Required]
+    public string? RecaptchaToken { get; set; }
 }

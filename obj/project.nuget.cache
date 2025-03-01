@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wIeo9XiciCA=",
+  "dgSpecHash": "XtOZeXo7aUI=",
   "success": true,
   "projectFilePath": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Pizzeria.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "/Users/ivanushachov/.nuget/packages/microsoft.win32.systemevents/6.0.0/microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "/Users/ivanushachov/.nuget/packages/mimekit/4.10.0/mimekit.4.10.0.nupkg.sha512",
     "/Users/ivanushachov/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
+    "/Users/ivanushachov/.nuget/packages/recaptcha.aspnetcore/3.0.10/recaptcha.aspnetcore.3.0.10.nupkg.sha512",
     "/Users/ivanushachov/.nuget/packages/system.clientmodel/1.0.0/system.clientmodel.1.0.0.nupkg.sha512",
     "/Users/ivanushachov/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/Users/ivanushachov/.nuget/packages/system.collections.immutable/7.0.0/system.collections.immutable.7.0.0.nupkg.sha512",

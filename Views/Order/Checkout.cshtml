@@ -1,0 +1,53 @@
+@model Pizzeria.ViewModels.Order.CreateUpdateOrderViewModel
+
+@{
+    ViewData["Title"] = "Оформление заказа";
+}
+
+<div class="blog-section">
+    <div id="checkout-cart" class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <div class="breadcrumb-main">
+                    <div class="breadcrumb-container clearfix">
+                        <h1 class="page-title">Корзина</h1>
+                        <ul class="breadcrumb">
+                            <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                            <li><a asp-controller="Order" asp-action="Checkout">Оформление заказа</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <form asp-action="Checkout" asp-controller="Order" method="post" class="well col-4" style="margin: 0 auto">
+                    <div class="form-group required">
+                        <label class="control-label" asp-for="Fio">ФИО</label>
+                        <input type="text" asp-for="Fio" class="form-control" placeholder="Римский Михаил Петрович">
+                        <span asp-validation-for="Fio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group required">
+                        <label class="d-flex col-sm-12 control-label" asp-for="Phone">Номер телефона</label>
+                        <input type="text" asp-for="Phone" class="form-control" placeholder="0965925724">
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group required">
+                        <label class="d-flex col-sm-12 control-label" asp-for="Email">Email</label>
+                        <input type="text" asp-for="Email" class="form-control" placeholder="email@gmail.com">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group required">
+                        <label class="d-flex col-sm-12 control-label" asp-for="City">Город</label>
+                        <input type="text" asp-for="City" class="form-control" placeholder="Киев">
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group required">
+                        <label class="d-flex col-sm-12 control-label" asp-for="Address">Адрес</label>
+                        <input type="text" asp-for="Address" class="form-control" placeholder="ул. Торговая, дом 22">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Оформить заказ" class="btn btn-primary w-100">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

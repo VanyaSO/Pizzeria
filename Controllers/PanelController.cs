@@ -198,16 +198,6 @@ public class PanelController : Controller
 
         return RedirectToAction("Users");
     }
-    
-    
-    //Statistics
-    [Authorize(Roles = "Admin")]
-    [Route("/panel/statistics")]
-    [HttpGet]
-    public IActionResult Statistics()
-    {
-        return View();
-    }
 }
 
 

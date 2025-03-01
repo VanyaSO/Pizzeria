@@ -84,3 +84,7 @@
 .category-info .form-table-settings__btn {
     height: 35px;
 }
+
+table th {
+    white-space: nowrap !important;
+}

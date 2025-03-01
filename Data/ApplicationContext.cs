@@ -6,8 +6,11 @@ namespace Pizzeria.Data;
 
 public class ApplicationContext : IdentityDbContext<User>
 {
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<Product> Products { get; set; } = null!;
+    public DbSet<ShopCartItem> ShopCartItems { get; set; } = null!;
+    public DbSet<Order> Orders { get; set; } = null!;
+    public DbSet<OrderDetails> OrderDetails { get; set; } = null!;
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
     {
@@ -20,5 +23,7 @@ public class ApplicationContext : IdentityDbContext<User>
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Category>().Property(e => e.DateOfPublication).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<ShopCartItem>().Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
+        modelBuilder.Entity<Order>().Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
     }
 }

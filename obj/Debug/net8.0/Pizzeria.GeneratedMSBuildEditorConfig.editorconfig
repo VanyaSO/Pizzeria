@@ -82,8 +82,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Home/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Ob3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Order/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvQ2hlY2tvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Order/EditOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvRWRpdE9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Order/PanelOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvUGFuZWxPcmRlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Panel/CreateOrUpdateUser.cshtml]
@@ -96,10 +112,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Panel/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFuZWwvSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Panel/Statistics.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFuZWwvU3RhdGlzdGljcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Panel/Users.cshtml]
@@ -118,8 +130,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NvbXBvbmVudHMvU2ltaWxhclByb2R1Y3RzL1NpbWlsYXJQcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Shared/_ConfirmModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Db25maXJtTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Shared/_Modal.cshtml]
@@ -140,6 +152,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/ShopCart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hvcENhcnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/Views/_ViewImports.cshtml]

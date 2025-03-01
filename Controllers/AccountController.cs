@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Pizzeria.Helpers;
 using Pizzeria.Models;
 using Pizzeria.ViewModels;
+using reCAPTCHA.AspNetCore;
 
 namespace Pizzeria.Controllers;
 
@@ -12,15 +13,16 @@ public class AccountController : Controller
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly EmailSender _emailSender;
+    private readonly ReСaptchaService _recaptchaService;
 
-
-    public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, EmailSender emailSender)
+    public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, EmailSender emailSender,
+        ReСaptchaService recaptchaService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _emailSender = emailSender;
+        _recaptchaService = recaptchaService;
     }
-
 
     [Route("/login")]
     [HttpGet]
@@ -33,7 +35,6 @@ public class AccountController : Controller
 
         return View(new LoginViewModel { ReturnUrl = returnUrl });
     }
-
 
     [Route("/login")]
     [HttpPost]
@@ -60,7 +61,6 @@ public class AccountController : Controller
         return View(model);
     }
 
-
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
@@ -74,39 +74,30 @@ public class AccountController : Controller
     public IActionResult IsEmailInUse(string email)
     {
         if (_userManager.Users.Any(e => e.Email!.Equals(email)))
-        {
             return Json(false);
-        }
 
         return Json(true);
     }
-
 
     [AcceptVerbs("Get", "Post")]
     [AllowAnonymous]
     public IActionResult IsEmailExists(string email)
     {
         if (_userManager.Users.Any(e => e.Email!.Equals(email)))
-        {
             return Json(true);
-        }
 
         return Json(false);
     }
 
-
     [Route("/register")]
     [HttpGet]
     public IActionResult Register()
-    {
+    {        
         if (User.Identity.IsAuthenticated)
-        {
             return RedirectToAction("Index", "Home");
-        }
 
         return View();
     }
-
 
     [Route("/register")]
     [HttpPost]
@@ -115,6 +106,13 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
+            var recaptchaResult = await _recaptchaService.Validate(model.RecaptchaToken);
+            if (!recaptchaResult)
+            {
+                ModelState.AddModelError("", "Вы не прошли проверку reCAPTCHA.");
+                return View(model);
+            }
+
             User user = new User
                 { Email = model.Email, UserName = model.Email, Year = model.Year, PhoneNumber = model.Phone };
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -140,7 +138,6 @@ public class AccountController : Controller
     {
         return View();
     }
-
 
     [Route("/forgot-password")]
     [HttpPost]
@@ -175,14 +172,12 @@ public class AccountController : Controller
         return View(requestForResetViewModel);
     }
 
-
     [Route("/forgot-password-confirmation")]
     [HttpGet]
     public IActionResult ForgotPasswordConfirmation()
     {
         return View();
     }
-
 
     [Route("/reset-password")]
     [HttpGet]
@@ -196,7 +191,6 @@ public class AccountController : Controller
         var model = new ResetPasswordViewModel { Token = token, Email = email };
         return View(model);
     }
-
 
     [Route("/reset-password")]
     [HttpPost]

@@ -13,9 +13,7 @@
             <form asp-action="EditProduct" asp-controller="Dish" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="All" class="text-danger"></div>
 
-
                 <input type="hidden" asp-for="Id"/>
-
 
                 <div class="form-group">
                     <label asp-for="Name" class="control-label">Название</label>
@@ -70,8 +68,6 @@
                     @Html.AntiForgeryToken()
                     <input type="submit" value="Сохранить" class="btn btn-primary"/>
                 </div>
-
-
             </form>
         </div>
     </div>
@@ -86,7 +82,6 @@
         var globalizedValue = value.replace(",", ".");
         return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
     }
-
 
     $.validator.methods.number = function (value, element) {
         return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);

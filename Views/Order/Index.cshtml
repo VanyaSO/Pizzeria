@@ -1,0 +1,97 @@
+@using Pizzeria.Helpers
+@model Pizzeria.Models.Pages.PagedList<Order>
+@{
+    ViewData["Title"] = "Мои заказы";
+}
+
+<div class="blog-section">
+    <div id="checkout-cart" class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12">
+                <div class="breadcrumb-main">
+                    <div class="breadcrumb-container clearfix">
+                        <h1 class="page-title">Мои заказы</h1>
+                        <ul class="breadcrumb">
+                            <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                            <li><a asp-controller="Order" asp-action="Index">Мои заказы</a></li>
+                        </ul>
+                    </div>
+                </div>
+                @if (Model.Count() > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td class="text-center">Заказ</td>
+                                <td class="text-left">Товар</td>
+                                <td class="text-left">Бренд</td>
+                                <td class="text-left">Количество</td>
+                                <td class="text-right">Цена за ед.</td>
+                                <td class="text-right" colspan="2">Итог</td>
+                                <td class="text-right">Дата</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var order in Model)
+                            {
+                                var rowCount = order.OrderDetails.Count();
+                                var details = order.OrderDetails.ToList();
+                                decimal totalSum = 0;
+
+                                @for (int i = 0; i < rowCount; i++)
+                                {
+                                    var detail = details[i];
+
+                                    <tr>
+                                        @if (i == 0)
+                                        {
+                                            <td class="text-center" rowspan="@rowCount">
+                                                <strong>@order.Id</strong>
+                                            </td>
+                                        }
+
+                                        <td class="text-left">
+                                            <img src="@detail.Product.Image" alt="@detail.Product.Name"
+                                                 title="@detail.Product.Name" class="img-thumbnail checkout-img">
+                                            <a asp-controller="Home" asp-action="GetProduct"
+                                               asp-route-productId="@detail.Product.Id"
+                                               asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">
+                                                @detail.Product.Name
+                                            </a>
+                                        </td>
+                                        <td class="text-left">@detail.Product.Brand</td>
+                                        <td class="text-left">@detail.Quantity</td>
+                                        <td class="text-right">₴@detail.Product.Price</td>
+                                        <td class="text-right">₴@(detail.Product.Price * detail.Quantity)</td>
+                                        @if (i == 0)
+                                        {
+                                            <td class="text-center" rowspan="@rowCount">
+                                                <span>₴@details.Sum(e => e.Quantity * e.Product.Price)</span>
+                                            </td>
+                                            <td class="text-center" rowspan="@rowCount">
+                                                <span>@order.CreatedAt.ToString("dd.MM.yyyy")</span>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <h1 class="cart-title">
+                        Ваша корзина пуста!
+                    </h1>
+                    <div class="buttons clearfix">
+                        <div class="text-center">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-default">Начать покупать</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

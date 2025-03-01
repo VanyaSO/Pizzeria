@@ -1,0 +1,51 @@
+@{
+    Layout = "~/Views/Panel/_PanelLayout.cshtml";
+    ViewData["Title"] = "Редактирование заказа";
+}
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Pizzeria.ViewModels.Order.CreateUpdateOrderViewModel
+
+
+<div class="row justify-content-center">
+    <div class="col-sm-12">
+        <div class="well mt-5">
+            <h3>Редактирование заказа</h3>
+            <form asp-action="EditOrder" asp-controller="Order" method="post" class="well col-8" style="margin: 0 auto">
+                <input type="text" asp-for="Id" hidden>
+                <div class="form-group required">
+                    <label class="control-label" asp-for="Fio">ФИО</label>
+                    <input type="text" asp-for="Fio" class="form-control" placeholder="Римский Михаил Петрович">
+                    <span asp-validation-for="Fio" class="text-danger"></span>
+                </div>
+                <div class="form-group required">
+                    <label class="d-flex col-sm-12 control-label" asp-for="Phone">Номер телефона</label>
+                    <input type="text" asp-for="Phone" class="form-control" placeholder="0965925724">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group required">
+                    <label class="d-flex col-sm-12 control-label" asp-for="Email">Email</label>
+                    <input type="text" asp-for="Email" class="form-control" placeholder="email@gmail.com">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group required">
+                    <label class="d-flex col-sm-12 control-label" asp-for="City">Город</label>
+                    <input type="text" asp-for="City" class="form-control" placeholder="Киев">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group required">
+                    <label class="d-flex col-sm-12 control-label" asp-for="Address">Адрес</label>
+                    <input type="text" asp-for="Address" class="form-control" placeholder="ул. Торговая, дом 22">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Редактировать" class="btn btn-primary w-100">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

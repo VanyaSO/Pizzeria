@@ -20,13 +20,13 @@
                             <li>
                                 <a asp-action="Dishes" asp-controller="Dish" class="list-group-item">Продукты</a>
                             </li>
+                            <li>
+                                <a asp-action="PanelOrders" asp-controller="Order" class="list-group-item">Заказы</a>
+                            </li>
                             @if (User.IsInRole("Admin"))
                             {
                                 <li>
                                     <a asp-action="Users" asp-controller="Panel" class="list-group-item">Пользователи</a>
-                                </li>
-                                <li>
-                                    <a asp-action="Statistics" asp-controller="Panel" class="list-group-item">Статистика</a>
                                 </li>
                             }
                         </ul>

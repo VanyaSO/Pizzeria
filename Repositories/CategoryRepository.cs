@@ -15,13 +15,12 @@ public class CategoryRepository : ICategory
         _context = context;
     }
 
-    public PagedList<Category> GetAllCategories(QueryOptions options) =>
-        new PagedList<Category>(_context.Categories, options);
+    public PagedList<Category> GetAllCategories(QueryOptions options) => new PagedList<Category>(_context.Categories, options);
 
     public async Task<IEnumerable<Category>> GetAllCategoriesAsync() => await _context.Categories.ToListAsync(); 
     
-    public async Task<Category?> GetCategoryByIdAsync(string id) =>
-        await _context.Categories.FirstOrDefaultAsync(e => e.Id.ToString() == id);
+    public async Task<Category?> GetCategoryByIdAsync(int id) =>
+        await _context.Categories.FirstOrDefaultAsync(e => e.Id == id);
 
     public async Task DeleteCategoryAsync(Category category)
     {

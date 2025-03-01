@@ -8,25 +8,34 @@ using Pizzeria.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<ReСaptchaService>();
+
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
 });
 
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+    {
+        options.Password.RequiredLength = 5;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireDigit = false;
+    })
+    .AddEntityFrameworkStores<ApplicationContext>()
+    .AddDefaultTokenProviders();
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/login";
-}); 
+    options.SlidingExpiration = true;
+});
 
 
-builder.Services.AddIdentity<User, IdentityRole>(options =>
-{
-    options.Password.RequiredLength = 5;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequireDigit = false;
-}).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opts => opts.TokenLifespan = TimeSpan.FromHours(1));
 
 var emailConfig = builder.Configuration
@@ -37,6 +46,9 @@ builder.Services.AddSingleton(emailConfig!);
 builder.Services.AddScoped<EmailSender>();
 builder.Services.AddScoped<ICategory, CategoryRepository>();
 builder.Services.AddScoped<IProduct, ProductRepository>();
+builder.Services.AddScoped<ICart, CartRepository>();
+builder.Services.AddScoped(e => CartRepository.GetCart(e));
+builder.Services.AddTransient<IOrder, OrderRepository>();
 
 
 
@@ -51,14 +63,6 @@ using (var scope = app.Services.CreateScope())
         var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var context = services.GetRequiredService<ApplicationContext>();
         await DbInit.InitializeAsync(context, userManager, rolesManager);
-
-        await DbInit.CreateSeedDataAsync(context,
-            categories: new string[]
-            {
-                "2d3c2c42-3c90-4531-a46f-08dd4611e222", 
-                "5ef5f097-9ba0-445b-a470-08dd4611e222",
-                "5d05f9c7-39ee-4214-a471-08dd4611e222"
-            });
     }
     catch (Exception ex)
     {
@@ -67,9 +71,10 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
+app.UseHttpsRedirection();
+app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode={0}");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

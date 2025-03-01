@@ -99,17 +99,6 @@
 							<a asp-action="GetProduct" asp-route-id="@product.Id" asp-route-returnUrl="@Context.Request.PathAndQuery()" class="thumb-image">
 								<img src="@product.Image" alt="@product.Name" class="img-responsive">
 							</a>
-							@* <div class="button-group"> *@
-							@* 	<button class="wishlist" type="button" data-toggle="tooltip" title="" *@
-							@* 	        data-original-title="Add to Wish List" data-bs-original-title=""><i class="icon-like"></i> *@
-							@* 	</button> *@
-							@* 	<button class="compare" type="button" data-toggle="tooltip" title="" *@
-							@* 	        data-original-title="Compare this Product" data-bs-original-title=""> *@
-							@* 		<i *@
-							@* 			class="icon-shuffle-arrows"></i></button> *@
-							@* 	<button class="themability_quickview-button" type="button" data-toggle="tooltip" title="" *@
-							@* 	        data-original-title="Quickview" data-bs-original-title=""><i class="icon-eye"></i></button> *@
-							@* </div> *@
 						</div>
 						<div class="product-description">
 							<div class="caption">
@@ -129,12 +118,14 @@
 								<div class="price-cartbtn clearfix">
 									<p class="price">₴@product.Price</p>
 									<p class="description">@product.Description</p>
-									<button class="addcart" type="button">
-										<i class="icon-shopping-bag hidden"></i>
-										<span class="">
-											<a href="shopping-cart.html">Order Now</a>
-										</span>
-									</button>
+									<form method="post" asp-controller="ShopCart" asp-action="AddToCart" data-ajax-mode="replace" data-ajax-update="#updateDiv" data-ajax="true">
+										<input type="hidden" name="productId" value="@product.Id" />
+										<input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+										<button type="submit" class="addcart">
+											<span>Добавить в Корзину</span>
+											<i class="icon-shopping-bag hidden"></i>
+										</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -143,8 +134,13 @@
 			}
 		}
 	</div>
-
 	<div class="text-center">
 		@await Html.PartialAsync("_Pages", Model)
 	</div>
 </div>
+
+<div id="updateDiv"></div>
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"></script>
+}

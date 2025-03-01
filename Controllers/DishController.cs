@@ -50,8 +50,7 @@ public class DishController : Controller
             AllCategories = new SelectList(categories, "Id", "Name")
         });
     }
-
-
+    
     [Route("/panel/create-product")]
     [HttpPost]
     [AutoValidateAntiforgeryToken]
@@ -69,7 +68,7 @@ public class DishController : Controller
                 Calories = productViewModel.Calories,
                 Price = productViewModel.Price,
                 Weight = productViewModel.Weight,
-                CategoryId = Guid.Parse(productViewModel.CategoryId),
+                CategoryId = productViewModel.CategoryId,
                 DateOfPublication = DateTime.Now
             };
             if (productViewModel.File != null)
@@ -99,7 +98,7 @@ public class DishController : Controller
 
     [Route("/panel/edit-product")]
     [HttpGet]
-    public async Task<IActionResult> EditProduct(string productId)
+    public async Task<IActionResult> EditProduct(int productId)
     {
         var currentProduct = await _products.GetProductAsync(productId);
         if (currentProduct != null)
@@ -107,7 +106,7 @@ public class DishController : Controller
             var categories = await _categories.GetAllCategoriesAsync();
             ProductViewModel productViewModel = new ProductViewModel
             {
-                Id = currentProduct.Id.ToString(),
+                Id = currentProduct.Id,
                 Name = currentProduct.Name,
                 Image = currentProduct.Image,
                 Description = currentProduct.Description,
@@ -116,7 +115,7 @@ public class DishController : Controller
                 Price = currentProduct.Price,
                 Type = currentProduct.Type,
                 Weight = currentProduct.Weight,
-                CategoryId = currentProduct.CategoryId.ToString(),
+                CategoryId = currentProduct.CategoryId,
                 AllCategories = new SelectList(categories, "Id", "Name")
             };
             return View(productViewModel);
@@ -125,13 +124,12 @@ public class DishController : Controller
         return NotFound();
     }
 
-
     [Route("/panel/edit-product")]
     [HttpPost]
     [AutoValidateAntiforgeryToken]
     public async Task<IActionResult> EditProduct(ProductViewModel productViewModel)
     {
-        if (!string.IsNullOrEmpty(productViewModel.Id) && ModelState.IsValid)
+        if (productViewModel.Id > 0 && ModelState.IsValid)
         {
             var selectedProduct = await _products.GetProductAsync(productViewModel.Id);
             if (selectedProduct == null)
@@ -139,7 +137,7 @@ public class DishController : Controller
 
             var currentProduct = new Product
             {
-                Id = Guid.Parse(productViewModel.Id),
+                Id = productViewModel.Id,
                 Name = productViewModel.Name!,
                 Description = productViewModel.Description!,
                 Image = selectedProduct.Image,
@@ -148,7 +146,7 @@ public class DishController : Controller
                 Price = productViewModel.Price,
                 Type = productViewModel.Type,
                 Weight = productViewModel.Weight,
-                CategoryId = Guid.Parse(productViewModel.CategoryId)
+                CategoryId = productViewModel.CategoryId
             };
             if (productViewModel.File != null)
             {
@@ -182,11 +180,10 @@ public class DishController : Controller
 
         return View(productViewModel);
     }
-
-
+    
     [Route("/panel/delete-product")]
     [HttpDelete]
-    public async Task<IActionResult> DeleteProduct(string productId)
+    public async Task<IActionResult> DeleteProduct(int productId)
     {
         var currentProduct = await _products.GetProductAsync(productId);
         if (currentProduct != null)

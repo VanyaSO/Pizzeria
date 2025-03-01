@@ -40,7 +40,7 @@ public class CategoryController : Controller
     
     [Route("/panel/delete-category")]
     [HttpDelete]
-    public async Task<IActionResult> DeleteCategory(string categoryId)
+    public async Task<IActionResult> DeleteCategory(int categoryId)
     {
         Category? category = await _categories.GetCategoryByIdAsync(categoryId);
         
@@ -62,16 +62,16 @@ public class CategoryController : Controller
     
     [Route("/panel/create-update-category")]
     [HttpGet]
-    public async Task<IActionResult> CreateOrUpdateCategory(string? categoryId)
+    public async Task<IActionResult> CreateOrUpdateCategory(int categoryId)
     {
-        if (!string.IsNullOrEmpty(categoryId))
+        if (categoryId > 0)
         {
             Category? category = await _categories.GetCategoryByIdAsync(categoryId);
             if (category != null)
             {
                 CreateOrUpdateCategoryViewModel cvm = new CreateOrUpdateCategoryViewModel()
                 {
-                    Id = category.Id.ToString(),
+                    Id = category.Id,
                     Name = category.Name,
                     Description = category.Description,
                     Image = category.Image
@@ -79,9 +79,9 @@ public class CategoryController : Controller
 
                 return View(cvm);
             }
-            return NotFound();
+            return NotFound();   
         }
-
+        
         return View(new CreateOrUpdateCategoryViewModel());
     }
     
@@ -90,7 +90,7 @@ public class CategoryController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateOrUpdateCategory(CreateOrUpdateCategoryViewModel model)
     {
-        if (string.IsNullOrEmpty(model.Id) && ModelState.IsValid)
+        if (model.Id > 0 && ModelState.IsValid)
         {
             if (_categories.IsHasCategoryWithName(model.Name))
             {

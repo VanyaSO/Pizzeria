@@ -7,7 +7,7 @@ namespace Pizzeria.ViewModels.Dish;
 public class ProductViewModel
 {
     [Key]
-    public string? Id { get; set; }
+    public int Id { get; set; }
     [Display(Name = "Название")]
     [Required(ErrorMessage = "Не указано название")]
     public string? Name { get; set; }
@@ -45,7 +45,7 @@ public class ProductViewModel
     public DateTime DateOfPublication { get; set; }
 
 
-    public string CategoryId { get; set; }
+    public int CategoryId { get; set; }
     public Category? Category { get; set; }
 
 

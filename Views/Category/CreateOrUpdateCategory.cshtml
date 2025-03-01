@@ -3,7 +3,7 @@
 @model CreateOrUpdateCategoryViewModel
 @{
     Layout = "~/Views/Panel/_PanelLayout.cshtml";
-    bool isChange = !string.IsNullOrEmpty(Model.Id);
+    bool isChange = Model.Id > 0;
     ViewData["Title"] = $"{(isChange ? "Изменить" : "Добавить")} категорию";
 }
 

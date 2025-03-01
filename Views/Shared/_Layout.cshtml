@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Pizzeria.Interfaces
+@using Pizzeria.Repositories
+@inject ICategory _categories;
+@inject CartRepository _cart;
+
+@{
+    var allCategories = await _categories.GetAllCategoriesAsync();
+    var cartProductCount = await _cart.GetShopCartItemsCountAsync();
+}
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8"/>
@@ -61,425 +71,136 @@
     </div>
 </nav>
 <header class="home">
-<div class="container">
-<div class="header-inner">
-<div class="header-left">
-    <div id="logo">
-        <a href="#">
-            <img src="~/assets/images/logo-white.png" title="Your Store" alt="Your Store" class="img-responsive">
-        </a>
-    </div>
-</div>
-<div class="header-center">
-<div class="themability_megamenu-style-dev">
-<div class="responsive themability_default">
-
-
-<nav class="navbar-default">
-<div class=" container-themability_megamenu   horizontal ">
-<div class="navbar-header">
-    <button type="button" id="show-themability_megamenu" data-toggle="collapse" class="navbar-toggle">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-</div>
-
-
-<div class="themability_megamenu-wrapper megamenu_typeheader">
-
-
-<span id="remove-themability_megamenu" class="fa fa-times"></span>
-
-
-<div class="themability_megamenu-pattern">
-<div class="container">
-<ul class="themability_megamenu" data-megamenuid="55" data-transition="slide" data-animationtime="500">
-
-
-<li class="home current-active active-first">
-    <a href="#">
-        <span>
-            <strong> Главная </strong>
-        </span>
-    </a>
-</li>
-
-
-<li class="with-sub-menu click">
-    <p class="close-menu"></p>
-    <a href="#" class="clearfix">
-        <strong>
-            Пицца
-        </strong>
-
-
-        <b class="fa fa-angle-down"></b>
-    </a>
-
-
-    <div class="sub-menu">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="categories hot">
-                        <div class="row">
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Pasta</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Fedelini</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Lasagna</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perciatelli</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+    <div class="container">
+        <div class="header-inner">
+            <div class="header-left">
+                <div id="logo">
+                    <a href="#">
+                        <img src="~/assets/images/logo-white.png" title="Your Store" alt="Your Store"
+                             class="img-responsive">
+                    </a>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="themability_megamenu-style-dev">
+                    <div class="responsive themability_default">
+                        <nav class="navbar-default">
+                            <div class=" container-themability_megamenu   horizontal ">
+                                <div class="navbar-header">
+                                    <button type="button" id="show-themability_megamenu" data-toggle="collapse"
+                                            class="navbar-toggle">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">
-                                                french
-                                                fries
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Sachets</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Ziti</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Rotelle</a>
-                                                </li>
 
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Drink</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">sosyo</a>
+                                <div class="themability_megamenu-wrapper megamenu_typeheader">
+                                    <span id="remove-themability_megamenu" class="fa fa-times"></span>
+                                    <div class="themability_megamenu-pattern">
+                                        <div class="container">
+                                            <ul class="themability_megamenu" data-megamenuid="55" data-transition="slide" data-animationtime="500">
+                                                <li class="home @(ViewBag.CategoryId is null ? "current-active active-first":"")">
+                                                    <a asp-controller="Home" asp-action="Index">
+                                                        <span><strong> Главная </strong></span>
+                                                    </a>
                                                 </li>
-                                                <li>
-                                                    <a href="#">coca-cola</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Cheddar
-                                                        Cheese
+                                                @foreach (Category category in allCategories)
+                                                {
+                                                    <li class="@(ViewBag.CategoryId == category.Id ? "current-active active-first":"")">
+                                                        <a asp-controller="Home" asp-action="Index" asp-route-categoryId="@category.Id" class="clearfix">
+                                                            <strong> @category.Name </strong>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                <li class="@(ViewBag.CategoryId == -1 ? "current-active active-first":"")">
+                                                    <p class="close-menu"></p>
+                                                    <a asp-controller="Home" asp-action="Contact">
+                                                        <span><strong> Контакты </strong></span>
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</li>
-
-
-<li class="with-sub-menu click">
-    <p class="close-menu"></p>
-    <a href="#" class="clearfix">
-        <strong>
-            Салаты
-        </strong>
-
-
-        <b class="fa fa-angle-down"></b>
-    </a>
-
-
-    <div class="sub-menu">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="categories hot">
-                        <div class="row">
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Pasta</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Fedelini</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Lasagna</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perciatelli</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">
-                                                french
-                                                fries
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Sachets</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Ziti</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Rotelle</a>
-                                                </li>
-
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Drink</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">sosyo</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">coca-cola</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Cheddar
-                                                        Cheese
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+            <div class="header-right">
+                <div class="search-content">
+                    <div class="search-btn-outer hidden-lg hidden-md">
+                        <i class="fa fa-search"></i>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-
-
-<li class="with-sub-menu click">
-    <p class="close-menu"></p>
-    <a href="#" class="clearfix">
-        <strong>
-            Напитки
-        </strong>
-
-
-        <b class="fa fa-angle-down"></b>
-    </a>
-
-
-    <div class="sub-menu">
-        <div class="content">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="categories hot">
-                        <div class="row">
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Pasta</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Fedelini</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Lasagna</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perciatelli</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">
-                                                french
-                                                fries
-                                            </a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Sachets</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Ziti</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Rotelle</a>
-                                                </li>
-
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 static-menu">
-                                <div class="menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="main-menu">Drink</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">sosyo</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">coca-cola</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Cheddar
-                                                        Cheese
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</li>
-
-
-<li>
-    <p class="close-menu"></p>
-    <a href="" class="clearfix">
-        <strong>
-            Контакты
-        </strong>
-    </a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</nav>
-</div>
-</div>
-
-
-</div>
-<div class="header-right">
-    <div class="search-content">
-        <div class="search-btn-outer hidden-lg hidden-md">
-            <i class="fa fa-search"></i>
-        </div>
-        <div class="header-search">
-            <div id="themabilitySearch" class="input-group themability-search">
-                <input type="text" name="search" value="" placeholder="Поиск..." class="form-control input-lg ui-autocomplete-input"/>
-                <span class="btn-search input-group-btn">
+                    <div class="header-search">
+                        <div id="themabilitySearch" class="input-group themability-search">
+                            <input type="text" name="search" value="" placeholder="Поиск..."
+                                   class="form-control input-lg ui-autocomplete-input"/>
+                            <span class="btn-search input-group-btn">
                     <button type="button" class="btn btn-default btn-lg">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-content">
+                    <div id="cart" class="btn-group btn-block">
+                        <a asp-action="Index" asp-controller="ShopCart" data-toggle="dropdown"
+                                data-loading-text="<i class='fa fa-spinner fa-spin' aria-hidden='true'></i>"
+                                class="btn btn-inverse btn-block btn-lg dropdown-toggle">
+                            <i class="fa fa-shopping-cart"></i> 
+                            <span id="cartProductNumber">
+                                @(cartProductCount <= 0 ? 0 : cartProductCount)
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div id="header_ac" class="dropdown">
+                    <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i><span class="hidden">My Account</span><span
+                            class="caret hidden"></span>
+                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
+                            <li>
+                                <a asp-controller="Account" asp-action="">@User.Identity.Name</a>
+                            </li>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
+                            {
+                                <li>
+                                    <a asp-controller="Panel" asp-action="Index">Панель управления</a>
+                                </li>
+                            }
+                            <li>
+                                <a asp-controller="Order" asp-action="Index">Мои заказы</a>
+                            </li>
+                            <li class="text-sm-center">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <input class="btn btn-dark" type="submit" value="Выход"/>
+                                </form>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
+                            <li>
+                                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Account" asp-action="Login">Авторизация</a>
+                            </li>
+                        </ul>
+                    }
+                </div>
             </div>
         </div>
     </div>
-    <div class="cart-content">
-        <div id="cart" class="btn-group btn-block">
-            <button type="button" data-toggle="dropdown" data-loading-text="<i class='fa fa-spinner fa-spin' aria-hidden='true'></i>"
-                    class="btn btn-inverse btn-block btn-lg dropdown-toggle">
-                <i class="fa fa-shopping-cart"></i> <span id="cart-total">2</span>
-            </button>
-
-
-        </div>
-    </div>
-
-
-    <div id="header_ac" class="dropdown">
-        <a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-user"></i><span class="hidden">My Account</span><span class="caret hidden"></span>
-        </a>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
-                <li>
-                    <a asp-controller="Account" asp-action="">@User.Identity.Name</a>
-                </li>
-                @if (User.IsInRole("Admin") || User.IsInRole("Editor"))
-                {
-                    <li>
-                        <a asp-controller="Panel" asp-action="Index">Панель управления</a>
-                    </li>
-                }
-                <li>
-                    <a asp-controller="Account" asp-action="">Мои заказы</a>
-                </li>
-                <li class="text-sm-center">
-                    <form method="post" asp-controller="Account" asp-action="Logout">
-                        <input class="btn btn-dark" type="submit" value="Выход"/>
-                    </form>
-                </li>
-            </ul>
-        }
-        else
-        {
-            <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
-                <li>
-                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-                </li>
-                <li>
-                    <a asp-controller="Account" asp-action="Login">Авторизация</a>
-                </li>
-            </ul>
-        }
-    </div>
-</div>
-</div>
-</div>
 
 
 </header>

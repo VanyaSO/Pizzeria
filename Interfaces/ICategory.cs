@@ -9,7 +9,7 @@ public interface ICategory
 {
     public PagedList<Category> GetAllCategories(QueryOptions options);
     public Task<IEnumerable<Category>> GetAllCategoriesAsync();
-    public Task<Category?> GetCategoryByIdAsync(string id);
+    public Task<Category?> GetCategoryByIdAsync(int id);
     public Task DeleteCategoryAsync(Category category);
     public Task CreateCategoryAsync(Category category);
     public bool IsHasCategoryWithName(string name);

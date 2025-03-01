@@ -277,3 +277,5 @@
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/Pizzeria.sourcelink.json
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/staticwebassets.build.endpoints.json
 /Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/staticwebassets/msbuild.Pizzeria.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/bin/Debug/net8.0/reCAPTCHA.AspNetCore.dll
+/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/obj/Debug/net8.0/Pizzeria.MvcApplicationPartsAssemblyInfo.cs

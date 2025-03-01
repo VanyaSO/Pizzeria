@@ -16,15 +16,15 @@ public class SimilarProductsViewComponent : ViewComponent
 
     public async Task<IViewComponentResult> InvokeAsync(string categoryName)
     {
-        var products = await _products.GetSimilarProductsAsync(categoryName);
+        var products = await _products.GetTenSimilarProductsAsync(categoryName);
         var pvm = products.Select(p => new ProductViewModel()
         {
-            Id = p.Id.ToString(),
+            Id = p.Id,
             Name = p.Name,
             Price = p.Price,
             Image = p.Image,
         });
         
-        return await Task.FromResult((IViewComponentResult)View("SimilarProducts", pvm));
+        return View("SimilarProducts", pvm);
     }
 }

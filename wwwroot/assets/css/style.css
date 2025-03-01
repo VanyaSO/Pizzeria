@@ -2738,9 +2738,9 @@ small {
     white-space: nowrap;
 }
 
-#checkout-cart .btn-danger {
+/*  #checkout-cart .btn-danger {
     padding: 8px 26px 8px 12px;
-}
+} */
 
 .input-group.btn-block {
     justify-content: center;

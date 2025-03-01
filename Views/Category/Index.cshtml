@@ -20,7 +20,8 @@
 </div>
 
 <div class="py-5">
-    <a asp-controller="Category" asp-action="CreateOrUpdateCategory" class="btn btn-primary w-100 mb-4">Добавить категорию</a>
+    <a asp-controller="Category" asp-action="CreateOrUpdateCategory" class="btn btn-primary w-100 mb-4">Добавить
+        категорию</a>
 
     <div class="mb-3">
         @await Html.PartialAsync("~/Views/Panel/_ItemsOptions.cshtml", Model)
@@ -46,7 +47,8 @@
                     <td>@category.Description</td>
                     <td>@category.DateOfPublication.ToShortDateString()</td>
                     <td>
-                        <a class="btn btn-sm btn-primary" asp-action="CreateOrUpdateCategory" asp-controller="Category" asp-route-categoryId="@category.Id">Изменить</a>
+                        <a class="btn btn-sm btn-primary" asp-action="CreateOrUpdateCategory" asp-controller="Category"
+                           asp-route-categoryId="@category.Id">Изменить</a>
                     </td>
                     <td>
                         <button onclick="deleteCategory('@category.Id')" class="btn btn-sm btn-danger">Удалить</button>
@@ -65,31 +67,31 @@
 
 @section Scripts {
     <script>
-    async function deleteCategory(categoryId) {
-        const btnYes = document.getElementById('btn-Yes');
-        const btnNo = document.getElementById('btn-No');
+        async function deleteCategory(categoryId) {
+            const btnYes = document.getElementById('btn-Yes');
+            const btnNo = document.getElementById('btn-No');
 
-        $('#confirmModal').modal('show');
+            $('#confirmModal').modal('show');
 
 
-        btnYes.onclick = () => {
-            const deleteItem = fetch(`/panel/delete-category/?categoryId=${categoryId}`, { method: 'DELETE' })
-                .then(response => {
-                    if (!response.ok) {
-                        response.json().then(data => {
-                            throw new Error(data.message);
-                        });
-                    }
-                    document.querySelector("tr[data-rowid='" + categoryId + "']").remove();
-                    $('#confirmModal').modal('hide');
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
+            btnYes.onclick = () => {
+                const deleteItem = fetch(`/panel/delete-category/?categoryId=${categoryId}`, {method: 'DELETE'})
+                    .then(response => {
+                        if (!response.ok) {
+                            response.json().then(data => {
+                                throw new Error(data.message);
+                            });
+                        }
+                        document.querySelector("tr[data-rowid='" + categoryId + "']").remove();
+                        $('#confirmModal').modal('hide');
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+            btnNo.onclick = () => {
+                $('#confirmModal').modal('hide');
+            }
         }
-        btnNo.onclick = () => {
-            $('#confirmModal').modal('hide');
-        }
-    }
-</script>
+    </script>
 }

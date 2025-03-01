@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Pizzeria.Views.Panel;
+namespace Pizzeria.Views.Order;
 
-public class Statistics : PageModel
+public class EditOrder : PageModel
 {
     public void OnGet()
     {

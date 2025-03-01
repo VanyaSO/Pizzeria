@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6pGwCfDyEM1FqdjUl5RSLzy8KxtDYArS1r4woN+g5WI=",
+  "Hash": "dDgH48ybRFee4Pvyj+jn5qpNeb4zYeY528hSK5cfLP8=",
   "Source": "Pizzeria",
   "BasePath": "_content/Pizzeria",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "q4r9itgjzx",
-      "Integrity": "ZmjAkqyMGfLEzHBiQGw2inG1O1NF4ezBQefK+MxssYY=",
+      "Fingerprint": "hooh5ir2y7",
+      "Integrity": "z4sisasozZmOZzq6+XyG7UeHKayYj1YHon6aUw9G3AQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/css/custom.css"
@@ -136,8 +136,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "qec1x75y03",
-      "Integrity": "7v0aIkRD5RuSCfmKzXZSHfpRhV7mSB2jtL9Cp9QcugY=",
+      "Fingerprint": "n34a1k6hfi",
+      "Integrity": "vbsGkfgSIoi8CTExMaYAaih2hNm75Q4ScqBAOnMfb4o=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/css/style.css"
@@ -3030,7 +3030,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1854"
+          "Value": "1903"
         },
         {
           "Name": "Content-Type",
@@ -3038,11 +3038,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZmjAkqyMGfLEzHBiQGw2inG1O1NF4ezBQefK+MxssYY=\""
+          "Value": "\"z4sisasozZmOZzq6+XyG7UeHKayYj1YHon6aUw9G3AQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Feb 2025 09:02:09 GMT"
+          "Value": "Thu, 27 Feb 2025 13:30:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3052,12 +3052,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZmjAkqyMGfLEzHBiQGw2inG1O1NF4ezBQefK+MxssYY="
+          "Value": "sha256-z4sisasozZmOZzq6+XyG7UeHKayYj1YHon6aUw9G3AQ="
         }
       ]
     },
     {
-      "Route": "assets/css/custom.q4r9itgjzx.css",
+      "Route": "assets/css/custom.hooh5ir2y7.css",
       "AssetFile": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/assets/css/custom.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3067,7 +3067,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1854"
+          "Value": "1903"
         },
         {
           "Name": "Content-Type",
@@ -3075,11 +3075,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZmjAkqyMGfLEzHBiQGw2inG1O1NF4ezBQefK+MxssYY=\""
+          "Value": "\"z4sisasozZmOZzq6+XyG7UeHKayYj1YHon6aUw9G3AQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Feb 2025 09:02:09 GMT"
+          "Value": "Thu, 27 Feb 2025 13:30:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3089,7 +3089,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "q4r9itgjzx"
+          "Value": "hooh5ir2y7"
         },
         {
           "Name": "label",
@@ -3097,7 +3097,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ZmjAkqyMGfLEzHBiQGw2inG1O1NF4ezBQefK+MxssYY="
+          "Value": "sha256-z4sisasozZmOZzq6+XyG7UeHKayYj1YHon6aUw9G3AQ="
         }
       ]
     },
@@ -3194,7 +3194,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "112201"
+          "Value": "112208"
         },
         {
           "Name": "Content-Type",
@@ -3202,11 +3202,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7v0aIkRD5RuSCfmKzXZSHfpRhV7mSB2jtL9Cp9QcugY=\""
+          "Value": "\"vbsGkfgSIoi8CTExMaYAaih2hNm75Q4ScqBAOnMfb4o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Feb 2025 09:27:25 GMT"
+          "Value": "Fri, 28 Feb 2025 08:23:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3216,12 +3216,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7v0aIkRD5RuSCfmKzXZSHfpRhV7mSB2jtL9Cp9QcugY="
+          "Value": "sha256-vbsGkfgSIoi8CTExMaYAaih2hNm75Q4ScqBAOnMfb4o="
         }
       ]
     },
     {
-      "Route": "assets/css/style.qec1x75y03.css",
+      "Route": "assets/css/style.n34a1k6hfi.css",
       "AssetFile": "/Users/ivanushachov/Desktop/STEP/ASP.NET/Pizzeria/Pizzeria/wwwroot/assets/css/style.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3231,7 +3231,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "112201"
+          "Value": "112208"
         },
         {
           "Name": "Content-Type",
@@ -3239,11 +3239,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7v0aIkRD5RuSCfmKzXZSHfpRhV7mSB2jtL9Cp9QcugY=\""
+          "Value": "\"vbsGkfgSIoi8CTExMaYAaih2hNm75Q4ScqBAOnMfb4o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Feb 2025 09:27:25 GMT"
+          "Value": "Fri, 28 Feb 2025 08:23:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3253,7 +3253,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "qec1x75y03"
+          "Value": "n34a1k6hfi"
         },
         {
           "Name": "label",
@@ -3261,7 +3261,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7v0aIkRD5RuSCfmKzXZSHfpRhV7mSB2jtL9Cp9QcugY="
+          "Value": "sha256-vbsGkfgSIoi8CTExMaYAaih2hNm75Q4ScqBAOnMfb4o="
         }
       ]
     },

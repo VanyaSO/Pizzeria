@@ -4,7 +4,7 @@ namespace Pizzeria.ViewModels;
 
 public class CreateOrUpdateCategoryViewModel
 {
-    public string? Id { get; set; }
+    public int Id { get; set; }
     
     [Required(ErrorMessage = "Название категории обязательно.")]
     [StringLength(100, ErrorMessage = "Название категории не может превышать 50 символов.")]
